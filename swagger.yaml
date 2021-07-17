@@ -30,9 +30,7 @@ paths:
                   type: string
                   format: email
                 password:
-                  description: >-
-                    Password that contains at least 8 characters, one uppercase
-                    letter and one digit
+                  description: 'Password that contains at least 8 characters, one uppercase letter and one digit'
                   type: string
             example:
               email: johndoe@example.com
@@ -63,9 +61,7 @@ paths:
                   type: string
                   format: email
                 password:
-                  description: >-
-                    Password that contains at least 8 characters, one uppercase
-                    letter and one digit
+                  description: 'Password that contains at least 8 characters, one uppercase letter and one digit'
                   type: string
             example:
               email: johndoe@example.com
@@ -651,8 +647,9 @@ components:
         type: number
         minimum: 0
         exclusiveMinimum: true
+      description: ID of the entity
     token:
-      description: A JWT password restore token
+      description: JWT
       in: query
       name: token
       allowEmptyValue: false
@@ -692,6 +689,22 @@ components:
           type: array
           items:
             type: string
+      x-examples:
+        example-1:
+          value:
+            first_name: string
+            last_name: string
+            nick_name: string
+            city: string
+            phone: string
+            rank: string
+            fullName: string
+            active: true
+            isApproved: true
+            main_role: string
+            email: user@example.com
+            additional_roles:
+              - string
     Tournament:
       type: object
       title: Team
@@ -760,9 +773,7 @@ components:
                 type: string
                 format: email
               password:
-                description: >-
-                  Password that contains at least 8 characters, one uppercase
-                  letter and one digit
+                description: 'Password that contains at least 8 characters, one uppercase letter and one digit'
                 type: string
           example:
             email: johndoe@example.com
@@ -800,4 +811,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-
