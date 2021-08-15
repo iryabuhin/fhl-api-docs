@@ -442,7 +442,7 @@ paths:
                     type: array
                     items:
                       type: string
-  /users/{:id}/approve:
+  /users/{id}/approve:
     patch:
       tags:
         - users
@@ -667,7 +667,7 @@ paths:
                           type: array
                           items:
                             type: string
-  /clubs/: 
+  /clubs: 
     get:
       tags:
         - clubs
@@ -705,7 +705,7 @@ paths:
                       type: string
                     potos:
                       type: string
-  /clubs/{id}/:
+  /clubs/{id}:
     get:
       tags:
         - clubs
