@@ -10,6 +10,8 @@ tags:
     description: Tournaments and all about them
   - name: users
     description: Operations related to users & user control
+  - name: clubs
+    description: Operations related to club-accounts
 paths:
   /auth/login:
     post:
@@ -440,6 +442,69 @@ paths:
                     type: array
                     items:
                       type: string
+  /users/{:id}/approve:
+    patch:
+      tags:
+        - users
+      summary: Approve user profile 
+      description: Update user approvement status
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          allowEmptyValue: false
+          style: simple
+          schema:
+            type: number
+            minimum: 0
+            exclusiveMinimum: true
+      requestBody:
+        description: value of approvement status
+        content:
+         application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                status  :
+                  type: boolean
+                  nullable: false
+      responses:
+        '200': 
+          description: Updated status of the user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    minimum: 0
+                  status:
+                    type: boolean
+                    nullable: false
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Description of the error message
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    default: Not found
   /tournaments:
     get:
       tags:
@@ -602,6 +667,89 @@ paths:
                           type: array
                           items:
                             type: string
+  /clubs/: 
+    get:
+      tags:
+        - clubs
+      summary: Get all clubs
+      description: Returns an array of all clubs
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: An array of Club data models
+                type: array
+                additionalProperties: false
+                items:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    pasword: 
+                      type: string
+                    name: 
+                      type: string
+                    phone:
+                      type: string
+                    city:
+                      type: string
+                    vk_link:
+                      type: string
+                    insta_link:
+                      type: string
+                    main_role:
+                      type: string
+                    banner:
+                      type: string
+                    potos:
+                      type: string
+  /clubs/{id}/:
+    get:
+      tags:
+        - clubs
+      summary: Get club by id
+      description: Returns specified club
+      parameters:
+        - name: id
+          in: path
+          required: true
+          allowEmptyValue: false
+          style: simple
+          schema:
+            type: number
+            minimum: 0
+            exclusiveMinimum: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Club data models
+                type: object
+                properties:
+                    login:
+                      type: string
+                    pasword: 
+                      type: string
+                    name: 
+                      type: string
+                    phone:
+                      type: string
+                    city:
+                      type: string
+                    vk_link:
+                      type: string
+                    insta_link:
+                      type: string
+                    main_role:
+                      type: string
+                    banner:
+                      type: string
+                    potos:
+                      type: string
 components:
   responses:
     '200':
@@ -752,6 +900,29 @@ components:
           type: array
           items:
             type: string
+    Club: 
+      type: object
+      properties:
+        login:
+          type: string
+        pasword: 
+          type: string
+        name: 
+          type: string
+        phone:
+          type: string
+        city:
+          type: string
+        vk_link:
+          type: string
+        insta_link:
+          type: string
+        main_role:
+          type: string
+        banner:
+          type: string
+        potos:
+          type: string
     playerRole:
       enum:
         - MAIN
