@@ -3,6 +3,9 @@ info:
   title: Fire Horn League API
   description: '# API'
   version: 1.0.0
+servers:
+  - url: https://fhl-api.herokuapp.com
+    description: Staging API server deployed on Heroku
 tags:
   - name: auth
     description: Authorization-related operations
